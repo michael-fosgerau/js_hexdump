@@ -8,13 +8,13 @@ function hexDump(str, consoleLog=false) {
         }
         return h;
     };
-    let s1='', s2='';
-    for (let l=0; l<str.length;) {
+    let s1 = '', s2 = '';
+    for (let l = 0; l < str.length;) {
         const hd = (str) => {
             let rs = '';
-            for (let i=0; i<16 && i+l<str.length; i++) {
-                let c = str.charAt(l+i);
-                if (c === "\n" || c === "\r" || c === "\t") { c='.'; }
+            for (let i = 0; i < 8 && i + l < str.length; i++) {
+                let c = str.charAt(l + i);
+                if (c === "\n" || c === "\r" || c === "\t") { c = '.'; }
                 rs += c;
             }
             l += rs.length;
@@ -24,7 +24,12 @@ function hexDump(str, consoleLog=false) {
         s2 = hd(str);
   
         res += hs(s1) + '|' + hs(s2) + ' | ' + s1+s2 + '\n';
-        s1='';s2='';
+        s1 = '';
+        s2 = '';
     }
-    if (consoleLog) { console.log(res); } else { return res; }
+    if (consoleLog) {
+        console.log(res);
+    } else {
+        return res;
+    }
 }
